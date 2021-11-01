@@ -53,7 +53,7 @@ U 1 1 616F25E0
 P 4900 4550
 F 0 "Y1" H 4900 4818 50  0000 C CNN
 F 1 "16MHz" H 4900 4727 50  0000 C CNN
-F 2 "Crystal:Crystal_SMD_SeikoEpson_MA505-2Pin_12.7x5.1mm_HandSoldering" H 4900 4550 50  0001 C CNN
+F 2 "Crystal:Crystal_SMD_TXC_7A-2Pin_5x3.2mm" H 4900 4550 50  0001 C CNN
 F 3 "~" H 4900 4550 50  0001 C CNN
 	1    4900 4550
 	1    0    0    -1  
@@ -304,7 +304,7 @@ U 1 1 61705B17
 P 1800 2000
 F 0 "BT1" H 1918 2096 50  0000 L CNN
 F 1 "Battery" H 1918 2005 50  0000 L CNN
-F 2 "Battery:BatteryHolder_Keystone_1058_1x2032" V 1800 2060 50  0001 C CNN
+F 2 "Battery:BatteryHolder_Keystone_3000_1x12mm" V 1800 2060 50  0001 C CNN
 F 3 "~" V 1800 2060 50  0001 C CNN
 	1    1800 2000
 	1    0    0    -1  
@@ -1531,7 +1531,7 @@ U 1 1 6178F4B0
 P 6400 5450
 F 0 "J2" H 6480 5442 50  0000 L CNN
 F 1 "ISP" H 6480 5351 50  0000 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch1.27mm" H 6400 5450 50  0001 C CNN
+F 2 "Connector_PinHeader_1.27mm:PinHeader_1x06_P1.27mm_Vertical" H 6400 5450 50  0001 C CNN
 F 3 "~" H 6400 5450 50  0001 C CNN
 	1    6400 5450
 	1    0    0    -1  
