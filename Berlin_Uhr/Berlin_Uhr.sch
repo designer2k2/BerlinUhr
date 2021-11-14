@@ -1638,4 +1638,8 @@ Wire Wire Line
 	1900 1500 5000 1500
 Wire Wire Line
 	2200 1600 4900 1600
+Text Label 2700 5900 0    50   ~ 0
+D1-
+Text Label 2700 6200 0    50   ~ 0
+D1+
 $EndSCHEMATC
