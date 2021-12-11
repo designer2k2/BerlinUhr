@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------
 // -- Global Variables
 // --------------------------------------------------------------------------------
+#define Delay4Tests 500
+
 #define BtnAPin 6
 #define BtnBPin 7
 
@@ -48,15 +50,11 @@ void setLedOn(int iLedPin)
   int iBright = round(4096 * m_iBright / 100);
   
   oTLC.setPWM((iLedPin - LedPinOffset), iBright);
-
-  oTLC.write();
 }
 
 void setLedOff(int iLedPin)
 {
-  oTLC.setPWM(iLedPin, 0);
-
-  oTLC.write();
+  oTLC.setPWM((iLedPin - LedPinOffset), 0);
 }
 
 // --------------------------------------------------------------------------------
@@ -165,16 +163,20 @@ void testLedNumSeq()
 {
   for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
     setLedOff(i);
+
+    oTLC.write();
   }
 
-  delay(200);
+  delay(Delay4Tests);
 
   m_iBright = 25;
   while (m_iBright <= 100) {
     for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
       setLedOn(i);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
       setLedOff(i);
+      oTLC.write();
     }
 
     m_iBright += 25;
@@ -187,43 +189,54 @@ void testLedSecMinHour()
 {
   for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
     setLedOff(i);
+    oTLC.write();
   }
 
-  delay(200);
+  delay(Delay4Tests);
 
   m_iBright = 25;
   while (m_iBright <= 100) {
     setLedOn(SecLedPin);
-    delay(200);
+    oTLC.write();
+    delay(Delay4Tests);
     setLedOff(SecLedPin);
-    delay(200);
+    oTLC.write();
+    delay(Delay4Tests);
     
     for (int i = 0; i < 4; i++) {
       setLedOn(Hour5Pin[i]);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
       setLedOff(Hour5Pin[i]);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
     }
     
     for (int i = 0; i < 4; i++) {
       setLedOn(Hour1Pin[i]);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
       setLedOff(Hour1Pin[i]);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
     }
     
     for (int i = 0; i < 11; i++) {
       setLedOn(Min5Pin[i]);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
       setLedOff(Min5Pin[i]);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
     }
     
     for (int i = 0; i < 4; i++) {
       setLedOn(Min1Pin[i]);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
       setLedOff(Min1Pin[i]);
-      delay(200);
+      oTLC.write();
+      delay(Delay4Tests);
     }
 
     m_iBright += 25;
@@ -239,9 +252,6 @@ void setup()
 {
   // Start the I2C interface
   Wire.begin();
- 
-  // Start the serial interface
-  Serial.begin(57600);
 
   pinMode(BtnAPin, INPUT_PULLUP);
   pinMode(BtnBPin, INPUT_PULLUP);
@@ -262,14 +272,16 @@ void loop()
 {
 //  testLedNumSeq();
 
-//  delay(200);
+//  delay(Delay4Tests);
 
   testLedSecMinHour();
 
-  delay(200);
+  delay(Delay4Tests);
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
   setHourLed(m_oClock.getHour(m_bH12, m_bPM));
+
+  oTLC.write();
 
   delay(1000);
 }
