@@ -284,7 +284,6 @@ void setup()
   pinMode(BtnBPin, INPUT_PULLUP);
 
   m_oClock.setClockMode(true);
-  setCompileTime();
   
   oTLC.begin();
   pinMode(oe, OUTPUT);
@@ -310,6 +309,8 @@ void loop()
   delay(Delay4Tests);
 #endif
 */
+  setCompileTime();
+
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
   setHourLed(m_oClock.getHour(m_bH12, m_bPM));
