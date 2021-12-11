@@ -88,28 +88,17 @@ void setMinLed(int iMin)
   m_iMin = iMin;
 
   // --------------------------------------------
-  //if (m_iMin < 5) {
-    for (int i = 0; i < 11; i++) {
-      // set Min5 off
-      setLedOff(Min5Pin[i]);
-    }
-  //}
-  //if (m_iMin == 0) {
-    for (int i = 0; i < 4; i++) {
-      // set Min1 off
-      setLedOff(Min1Pin[i]);
-    }
-  //}
+  for (int i = 0; i < 11; i++) {
+    // set Min5 off
+    setLedOff(Min5Pin[i]);
+  }
+  for (int i = 0; i < 4; i++) {
+    // set Min1 off
+    setLedOff(Min1Pin[i]);
+  }
   
   // --------------------------------------------
   int iRest = m_iMin % 5;
-//  if (iRest == 0) {
-//    for (int i = 0; i < 4; i++) {
-//      // set Min1 off
-//      setLedOff(Min1Pin[i]);
-//    }
-//  }
-//  else {
   if (iRest != 0) {
     for (int i = 0; i < iRest; i++) {
       // set Min1 on
@@ -134,28 +123,17 @@ void setHourLed(int iHour)
   m_iHour = iHour;
 
   // --------------------------------------------
-  //if (m_iHour < 5) {
-    for (int i = 0; i < 4; i++) {
-      // set Hours off
-      setLedOff(Hour5Pin[i]);
-    }
-  //}
-  //if (m_iHour == 0) {
-    for (int i = 0; i < 4; i++) {
-      // set Hours off
-      setLedOff(Hour1Pin[i]);
-    }
-  //}
+  for (int i = 0; i < 4; i++) {
+    // set Hours off
+    setLedOff(Hour5Pin[i]);
+  }
+  for (int i = 0; i < 4; i++) {
+    // set Hours off
+    setLedOff(Hour1Pin[i]);
+  }
   
   // --------------------------------------------
   int iRest = m_iHour % 5;
-//  if (iRest == 0) {
-//    for (int i = 0; i < 4; i++) {
-//      // set Hour1 off
-//      setLedOff(Hour1Pin[i]);
-//    }
-//  }
-//  else {
   if (iRest != 0) {
     for (int i = 0; i < iRest; i++) {
       // set Hour1 on
@@ -281,6 +259,8 @@ void setCompileTime()
     m_oClock.setSecond(0);
     
     EEPROM.write(iAddr, iFirstStart); 
+
+    delay(500);
   }
 }
 
@@ -319,7 +299,6 @@ void loop()
 #endif
 */
   setCompileTime();
-  delay(500);
 
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
