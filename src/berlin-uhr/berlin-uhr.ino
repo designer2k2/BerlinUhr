@@ -278,6 +278,9 @@ void setup()
   pinMode(oe, OUTPUT);
   digitalWrite(oe, LOW);
 
+  m_iMin = 0;
+  m_iHour = 0;
+  
   for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
     setLedOff(i);
   }
