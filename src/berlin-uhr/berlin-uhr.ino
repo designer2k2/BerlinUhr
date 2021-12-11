@@ -11,11 +11,12 @@
 #define BtnAPin 6
 #define BtnBPin 7
 
-#define SecLedPin 0
-const int Hour1Pin[4] = {1, 2, 3, 4};
-const int Hour5Pin[4] = {5, 6, 7, 8};
-const int Min5Pin[11] = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-const int Min1Pin[4] = {20, 21, 22, 23};
+#define LedPinOffset 3
+#define SecLedPin 3
+const int Hour1Pin[4] = {23, 24, 7, 6};
+const int Hour5Pin[4] = {25, 26, 4, 5};
+const int Min5Pin[11] = {22, 21, 18, 17, 16, 15, 14, 13, 11, 9, 8};
+const int Min1Pin[4] = {20, 19, 12, 10};
 
 int m_iBright = 50;
 
@@ -64,9 +65,13 @@ void setup()
 // --------------------------------------------------------------------------------
 void setLedOn(int iLedPin)
 {
+  if (iLedPin < LedPinOffset) {
+    return;
+  }
+  
   int iBright = round(4096 * m_iBright / 100);
   
-  oTLC.setPWM(iLedPin, iBright);
+  oTLC.setPWM((iLedPin - LedPinOffset), iBright);
 }
 
 void setLedOff(int iLedPin)
