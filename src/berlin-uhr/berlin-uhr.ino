@@ -115,7 +115,7 @@ void setMinLed(int iMin)
   }
 
   // --------------------------------------------
-  int iCount5 = (m_iMin - iRest) % 5;
+  int iCount5 = (m_iMin - iRest) / 5;
   for (int i = 0; i < iCount5; i++) {
     // set Min5 on
     setLedOn(Min5Pin[i]);
@@ -155,7 +155,7 @@ void setHourLed(int iHour)
   }
 
   // --------------------------------------------
-  int iCount5 = (m_iHour - iRest) % 5;
+  int iCount5 = (m_iHour - iRest) / 5;
   for (int i = 0; i < iCount5; i++) {
     // set Hour5 on
     setLedOn(Hour5Pin[i]);
@@ -259,6 +259,8 @@ void setCompileTime()
   const int iAddr = 0;
   const int iFirstStart = 1;
 
+  // TODO: check RTC time is older than compile time
+  
   if (EEPROM.read(iAddr) != iFirstStart) {
     DateTime oDT(__DATE__, __TIME__);
     
@@ -314,5 +316,5 @@ void loop()
 
   oTLC.write();
 
-  delay(1000);
+  delay(200);
 }
