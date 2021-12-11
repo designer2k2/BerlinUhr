@@ -17,7 +17,7 @@ const int Hour5Pin[4] = {5, 6, 7, 8};
 const int Min5Pin[11] = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
 const int Min1Pin[4] = {20, 21, 22, 23};
 
-int iBrightness = 50;
+int m_iBright = 50;
 
 // --------------------
 // RTC
@@ -64,7 +64,9 @@ void setup()
 // --------------------------------------------------------------------------------
 void setLedOn(int iLedPin)
 {
-  oTLC.setPWM(iLedPin, iBrightness);
+  int iBright = round(4096 * m_iBright / 100);
+  
+  oTLC.setPWM(iLedPin, iBright);
 }
 
 void setLedOff(int iLedPin)
