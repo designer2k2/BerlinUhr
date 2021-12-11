@@ -37,30 +37,6 @@ bool m_bH12, m_bPM;
 Adafruit_TLC5947 oTLC = Adafruit_TLC5947(1, Clock, Data, Latch);
 
 // --------------------------------------------------------------------------------
-// -- Setup
-// --------------------------------------------------------------------------------
-void setup()
-{
-  // Start the I2C interface
-  Wire.begin();
- 
-  // Start the serial interface
-  Serial.begin(57600);
-
-  pinMode(BtnAPin, INPUT_PULLUP);
-  pinMode(BtnBPin, INPUT_PULLUP);
-
-  oTLC.begin();
-  pinMode(oe, OUTPUT);
-  digitalWrite(oe, LOW);
-
-  for (int i = 0; i < 23; i++) {
-    oTLC.setPWM(i, 0); //0 = 0%, 4095 = 100%
-  }
-  oTLC.write();  
-}
-
-// --------------------------------------------------------------------------------
 // -- Set LEDs
 // --------------------------------------------------------------------------------
 void setLedOn(int iLedPin)
@@ -72,13 +48,20 @@ void setLedOn(int iLedPin)
   int iBright = round(4096 * m_iBright / 100);
   
   oTLC.setPWM((iLedPin - LedPinOffset), iBright);
+
+  oTLC.write();
 }
 
 void setLedOff(int iLedPin)
 {
   oTLC.setPWM(iLedPin, 0);
+
+  oTLC.write();
 }
 
+// --------------------------------------------------------------------------------
+// -- Set Sec, Min, Hour LEDs
+// --------------------------------------------------------------------------------
 void setSecLed(int iSec)
 {
   // Sec even?
@@ -176,13 +159,64 @@ void setHourLed(int iHour)
 }
 
 // --------------------------------------------------------------------------------
+// -- Tests
+// --------------------------------------------------------------------------------
+void testLed()
+{
+  for (int i = LedPinOffset; i < (23 + LedPinOffset); i++) {
+    setLedOff(i);
+  }
+
+  delay(200);
+
+  m_iBright = 25;
+  while (m_iBright <= 100) {
+    for (int i = LedPinOffset; i < (23 + LedPinOffset); i++) {
+      setLedOn(i);
+      delay(200);
+      setLedOff(i);
+    }
+
+    m_iBright += 25;
+  }
+
+  m_iBright = 50;
+}
+
+// --------------------------------------------------------------------------------
+// -- Setup
+// --------------------------------------------------------------------------------
+void setup()
+{
+  // Start the I2C interface
+  Wire.begin();
+ 
+  // Start the serial interface
+  Serial.begin(57600);
+
+  pinMode(BtnAPin, INPUT_PULLUP);
+  pinMode(BtnBPin, INPUT_PULLUP);
+
+  oTLC.begin();
+  pinMode(oe, OUTPUT);
+  digitalWrite(oe, LOW);
+
+  for (int i = LedPinOffset; i < (23 + LedPinOffset); i++) {
+    setLedOff(i);
+  }
+}
+
+// --------------------------------------------------------------------------------
 // -- Main Loop
 // --------------------------------------------------------------------------------
 void loop()
 {
+  testLed();
+
+  delay(200);
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
   setHourLed(m_oClock.getHour(m_bH12, m_bPM));
 
-  oTLC.write();
+  delay(1000);
 }
