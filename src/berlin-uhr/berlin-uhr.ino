@@ -4,12 +4,18 @@
 #include <Adafruit_TLC5947.h>
 #include <DS3231.h>
 #include <Wire.h>
+#include <EEPROM.h>
+
+// --------------------------------------------------------------------------------
+// -- Global Variables for Tests
+// --------------------------------------------------------------------------------
+#define Delay4Tests 500
+#define TESTNUMSEQ 0 // Test: LED sequence pin number 
+#define TESTLEDSEQ 0 // Test: LED sequence sec, hour, min (top -> bottom, left -> right)
 
 // --------------------------------------------------------------------------------
 // -- Global Variables
 // --------------------------------------------------------------------------------
-#define Delay4Tests 500
-
 #define BtnAPin 6
 #define BtnBPin 7
 
@@ -248,6 +254,25 @@ void testLedSecMinHour()
 // --------------------------------------------------------------------------------
 // -- Setup
 // --------------------------------------------------------------------------------
+void setCompileTime()
+{
+  const int iAddr = 0;
+  const int iFirstStart = 1;
+
+  if (EEPROM.read(iAddr) != iFirstStart) {
+    DateTime oDT(__DATE__, __TIME__);
+    
+    m_oClock.setYear(oDT.year());
+    m_oClock.setMonth(oDT.month());
+    m_oClock.setDate(oDT.day());
+    m_oClock.setHour(oDT.hour());
+    m_oClock.setMinute(oDT.minute());
+    m_oClock.setSecond(0);
+    
+    EEPROM.write(iAddr, iFirstStart); 
+  }
+}
+
 void setup()
 {
   // Start the I2C interface
@@ -256,6 +281,9 @@ void setup()
   pinMode(BtnAPin, INPUT_PULLUP);
   pinMode(BtnBPin, INPUT_PULLUP);
 
+  m_oClock.setClockMode(true);
+  setCompileTime();
+  
   oTLC.begin();
   pinMode(oe, OUTPUT);
   digitalWrite(oe, LOW);
@@ -270,13 +298,15 @@ void setup()
 // --------------------------------------------------------------------------------
 void loop()
 {
-//  testLedNumSeq();
-
-//  delay(Delay4Tests);
-
-  testLedSecMinHour();
-
+#ifdef TESTNUMSEQ
+  testLedNumSeq();
   delay(Delay4Tests);
+#endif
+#ifdef TESTLEDSEQ
+  testLedSecMinHour();
+  delay(Delay4Tests);
+#endif
+
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
   setHourLed(m_oClock.getHour(m_bH12, m_bPM));
