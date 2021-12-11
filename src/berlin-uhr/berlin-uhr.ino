@@ -298,6 +298,7 @@ void setup()
 // --------------------------------------------------------------------------------
 void loop()
 {
+/*
 #ifdef TESTNUMSEQ
   testLedNumSeq();
   delay(Delay4Tests);
@@ -306,7 +307,7 @@ void loop()
   testLedSecMinHour();
   delay(Delay4Tests);
 #endif
-
+*/
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
   setHourLed(m_oClock.getHour(m_bH12, m_bPM));
