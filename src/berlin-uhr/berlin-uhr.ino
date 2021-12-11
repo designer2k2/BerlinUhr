@@ -161,9 +161,9 @@ void setHourLed(int iHour)
 // --------------------------------------------------------------------------------
 // -- Tests
 // --------------------------------------------------------------------------------
-void testLed()
+void testLedNumSeq()
 {
-  for (int i = LedPinOffset; i < (23 + LedPinOffset); i++) {
+  for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
     setLedOff(i);
   }
 
@@ -171,10 +171,59 @@ void testLed()
 
   m_iBright = 25;
   while (m_iBright <= 100) {
-    for (int i = LedPinOffset; i < (23 + LedPinOffset); i++) {
+    for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
       setLedOn(i);
       delay(200);
       setLedOff(i);
+    }
+
+    m_iBright += 25;
+  }
+
+  m_iBright = 50;
+}
+
+void testLedSecMinHour()
+{
+  for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
+    setLedOff(i);
+  }
+
+  delay(200);
+
+  m_iBright = 25;
+  while (m_iBright <= 100) {
+    setLedOn(SecLedPin);
+    delay(200);
+    setLedOff(SecLedPin);
+    delay(200);
+    
+    for (int i = 0; i < 4; i++) {
+      setLedOn(Hour5Pin[i]);
+      delay(200);
+      setLedOff(Hour5Pin[i]);
+      delay(200);
+    }
+    
+    for (int i = 0; i < 4; i++) {
+      setLedOn(Hour1Pin[i]);
+      delay(200);
+      setLedOff(Hour1Pin[i]);
+      delay(200);
+    }
+    
+    for (int i = 0; i < 11; i++) {
+      setLedOn(Min5Pin[i]);
+      delay(200);
+      setLedOff(Min5Pin[i]);
+      delay(200);
+    }
+    
+    for (int i = 0; i < 4; i++) {
+      setLedOn(Min1Pin[i]);
+      delay(200);
+      setLedOff(Min1Pin[i]);
+      delay(200);
     }
 
     m_iBright += 25;
@@ -201,7 +250,7 @@ void setup()
   pinMode(oe, OUTPUT);
   digitalWrite(oe, LOW);
 
-  for (int i = LedPinOffset; i < (23 + LedPinOffset); i++) {
+  for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
     setLedOff(i);
   }
 }
@@ -211,7 +260,11 @@ void setup()
 // --------------------------------------------------------------------------------
 void loop()
 {
-  testLed();
+//  testLedNumSeq();
+
+//  delay(200);
+
+  testLedSecMinHour();
 
   delay(200);
   setSecLed(m_oClock.getSecond());
