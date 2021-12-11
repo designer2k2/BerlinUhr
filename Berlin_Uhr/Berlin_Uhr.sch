@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Berlin Uhr"
-Date "2021-10-19"
+Date "2021-12-11"
 Rev ""
 Comp "https://www.designer2k2.at"
 Comment1 ""
@@ -303,7 +303,7 @@ L Device:Battery_Cell BT1
 U 1 1 61705B17
 P 1800 2000
 F 0 "BT1" H 1918 2096 50  0000 L CNN
-F 1 "Battery" H 1918 2005 50  0000 L CNN
+F 1 "CR1216" H 1918 2005 50  0000 L CNN
 F 2 "Battery:BatteryHolder_Keystone_3000_1x12mm" V 1800 2060 50  0001 C CNN
 F 3 "~" V 1800 2060 50  0001 C CNN
 	1    1800 2000
@@ -427,17 +427,6 @@ F 1 "GND" H 6755 3477 50  0000 C CNN
 F 2 "" H 6750 3650 50  0001 C CNN
 F 3 "" H 6750 3650 50  0001 C CNN
 	1    6750 3650
-	-1   0    0    1   
-$EndComp
-$Comp
-L power:GND #PWR025
-U 1 1 61721DA9
-P 6450 3650
-F 0 "#PWR025" H 6450 3400 50  0001 C CNN
-F 1 "GND" H 6455 3477 50  0000 C CNN
-F 2 "" H 6450 3650 50  0001 C CNN
-F 3 "" H 6450 3650 50  0001 C CNN
-	1    6450 3650
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -1642,4 +1631,15 @@ Text Label 2700 5900 0    50   ~ 0
 D1-
 Text Label 2700 6200 0    50   ~ 0
 D1+
+$Comp
+L power:+5V #PWR0102
+U 1 1 61B5641F
+P 6450 3650
+F 0 "#PWR0102" H 6450 3500 50  0001 C CNN
+F 1 "+5V" H 6465 3823 50  0000 C CNN
+F 2 "" H 6450 3650 50  0001 C CNN
+F 3 "" H 6450 3650 50  0001 C CNN
+	1    6450 3650
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
