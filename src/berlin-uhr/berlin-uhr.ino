@@ -26,6 +26,8 @@ const int Hour5Pin[4] = {25, 26, 4, 5};
 const int Min5Pin[11] = {22, 21, 18, 17, 16, 15, 14, 13, 11, 9, 8};
 const int Min1Pin[4] = {20, 19, 12, 10};
 
+#define LightSensorPin A0
+#define LightSensorMax 1024
 int m_iBright = 50;
 
 // --------------------
@@ -327,20 +329,37 @@ void setup()
   }
 }
 
+void testSim24h()
+{
+  setSecLed(0);
+  
+  for (int h = 0; h < 24; h++) {
+    for (int m = 0; m < 60; m++) {
+      setHourLed(h);
+      setMinLed(m);
+    
+      oTLC.write();
+    
+      delay(200);
+    }
+  }
+}
+
 // --------------------------------------------------------------------------------
 // -- Main Loop
 // --------------------------------------------------------------------------------
 void loop()
 {
 /*
-#ifdef TESTNUMSEQ
   testLedNumSeq();
   delay(Delay4Tests);
-#endif
-#ifdef TESTLEDSEQ
+*/
+/*
   testLedSecMinHour();
   delay(Delay4Tests);
-#endif
+*/
+/*
+  testSim24h();
 */
 
   if (!digitalRead(BtnAPin)) {
@@ -349,6 +368,8 @@ void loop()
   if (!digitalRead(BtnBPin)) {
     decMin();
   }
+
+  //m_iBright = round(analogRead(LightSensorPin) * 100 / LightSensorMax);
 
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
