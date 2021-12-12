@@ -11,8 +11,8 @@ The [ATtiny167](https://www.microchip.com/ATtiny167) receives the actual time fr
 
 1. PCB, source it with the gerbers: https://github.com/designer2k2/BerlinUhr_HW/tree/main/Berlin_Uhr/gerber
 2. BOM, interactive BOM here: https://github.com/designer2k2/BerlinUhr_HW/tree/main/Berlin_Uhr/bom
-3. Bootloader, burn the Micronucleus Bootloader to the ATtiny167: https://github.com/micronucleus/micronucleus
-4. Software, soon...
+3. Bootloader, burn the [Micronucleus](https://github.com/micronucleus/micronucleus) Bootloader to the ATtiny167 with ISP: https://github.com/ArminJo/DigistumpArduino 
+4. Software, upload the Code from the scr folder: https://github.com/designer2k2/BerlinUhr_HW/tree/main/src/berlin-uhr 
 
 ## Modifiying it
 
