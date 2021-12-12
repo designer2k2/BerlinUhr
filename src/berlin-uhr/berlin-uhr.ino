@@ -150,6 +150,45 @@ void setHourLed(int iHour)
 }
 
 // --------------------------------------------------------------------------------
+// -- change time
+// --------------------------------------------------------------------------------
+void incMin()
+{
+  int iMin = m_oClock.getMinute();
+  int iHour = m_oClock.getHour(m_bH12, m_bPM);
+
+  if (iMin == 59) {
+    iMin = 0;
+    iHour++;
+  }
+  else {
+    iMin++;
+  }
+
+  m_oClock.setHour(iHour);
+  m_oClock.setMinute(iMin);
+  m_oClock.setSecond(0);
+}
+
+void decMin()
+{
+  int iMin = m_oClock.getMinute();
+  int iHour = m_oClock.getHour(m_bH12, m_bPM);
+
+  if (iMin == 0) {
+    iMin = 59;
+    iHour--;
+  }
+  else {
+    iMin--;
+  }
+
+  m_oClock.setHour(iHour);
+  m_oClock.setMinute(iMin);
+  m_oClock.setSecond(0);
+}
+
+// --------------------------------------------------------------------------------
 // -- Tests
 // --------------------------------------------------------------------------------
 void testLedNumSeq()
@@ -272,7 +311,7 @@ void setup()
   pinMode(BtnAPin, INPUT_PULLUP);
   pinMode(BtnBPin, INPUT_PULLUP);
 
-  m_oClock.setClockMode(true);
+  m_oClock.setClockMode(false);
   
   oTLC.begin();
   pinMode(oe, OUTPUT);
@@ -280,6 +319,8 @@ void setup()
 
   m_iMin = 0;
   m_iHour = 0;
+
+  setCompileTime();
   
   for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
     setLedOff(i);
@@ -301,7 +342,13 @@ void loop()
   delay(Delay4Tests);
 #endif
 */
-  setCompileTime();
+
+  if (!digitalRead(BtnAPin)) {
+    incMin();
+  }
+  if (!digitalRead(BtnBPin)) {
+    decMin();
+  }
 
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
