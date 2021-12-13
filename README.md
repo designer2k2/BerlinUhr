@@ -21,4 +21,21 @@ The [ATtiny167](https://www.microchip.com/ATtiny167) receives the actual time fr
 - Parts of the graphics are converted to Footprints with svg2mod: https://github.com/mtl/svg2mod
 - The BOM is made with InteractiveHtmlBom: https://github.com/openscopeproject/InteractiveHtmlBom
 
-![Preview](https://user-images.githubusercontent.com/1591573/142769529-5a30a746-61aa-49ff-9e78-8e52ba1644e3.png)
+## How it looks
+
+![grafik](https://user-images.githubusercontent.com/1591573/145868070-2f7428de-198e-460a-b480-efdc99f8b2e2.png)
+
+Its 17:45 :smiley:
+
+The bare PCB:
+
+![grafik](https://user-images.githubusercontent.com/1591573/145869008-ae3285b8-d30f-4078-b08b-50e39cbf8119.png)
+
+ISP Programming the ATtiny with the help of a Arduino Uno:
+
+![grafik](https://user-images.githubusercontent.com/1591573/145869260-832a9c8c-31fa-4e75-bda4-909f35da3e4d.png)
+
+Populated backside:
+
+![grafik](https://user-images.githubusercontent.com/1591573/145869349-2cbfdd7d-9a13-4a76-96ba-92dfe215c420.png)
+
