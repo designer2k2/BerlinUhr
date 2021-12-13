@@ -1,4 +1,4 @@
-# BerlinUhr hardware
+# BerlinUhr
 Berlin Uhr or Mengenlehreuhr, a fancy retro style clock thats a bit tricky to read: https://en.wikipedia.org/wiki/Mengenlehreuhr
 
 ## What is this
@@ -9,10 +9,10 @@ The [ATtiny167](https://www.microchip.com/ATtiny167) receives the actual time fr
 
 ## Building it
 
-1. PCB, source it with the gerbers: https://github.com/designer2k2/BerlinUhr_HW/tree/main/Berlin_Uhr/gerber
-2. BOM, interactive BOM here: https://github.com/designer2k2/BerlinUhr_HW/tree/main/Berlin_Uhr/bom
+1. PCB, source it with the gerbers: https://github.com/designer2k2/BerlinUhr/tree/main/Berlin_Uhr/gerber
+2. BOM, interactive BOM here: https://github.com/designer2k2/BerlinUhr/tree/main/Berlin_Uhr/bom
 3. Bootloader, burn the [Micronucleus](https://github.com/micronucleus/micronucleus) Bootloader to the ATtiny167 with ISP: https://github.com/ArminJo/DigistumpArduino 
-4. Software, upload the Code from the scr folder: https://github.com/designer2k2/BerlinUhr_HW/tree/main/src/berlin-uhr 
+4. Software, upload the Code from the scr folder: https://github.com/designer2k2/BerlinUhr/tree/main/src/berlin-uhr 
 
 ## Modifiying it
 
