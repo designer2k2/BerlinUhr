@@ -10,8 +10,6 @@
 // -- Global Variables for Tests
 // --------------------------------------------------------------------------------
 #define Delay4Tests 500
-#define TESTNUMSEQ 0 // Test: LED sequence pin number 
-#define TESTLEDSEQ 0 // Test: LED sequence sec, hour, min (top -> bottom, left -> right)
 
 // --------------------------------------------------------------------------------
 // -- Global Variables
@@ -219,64 +217,22 @@ void testLedNumSeq()
   m_iBright = 50;
 }
 
-void testLedSecMinHour()
+void testSim24h()
 {
-  for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
-    setLedOff(i);
-    oTLC.write();
-  }
-
-  delay(Delay4Tests);
-
-  m_iBright = 25;
-  while (m_iBright <= 100) {
-    setLedOn(SecLedPin);
-    oTLC.write();
-    delay(Delay4Tests);
-    setLedOff(SecLedPin);
-    oTLC.write();
-    delay(Delay4Tests);
-    
-    for (int i = 0; i < 4; i++) {
-      setLedOn(Hour5Pin[i]);
-      oTLC.write();
-      delay(Delay4Tests);
-      setLedOff(Hour5Pin[i]);
-      oTLC.write();
-      delay(Delay4Tests);
-    }
-    
-    for (int i = 0; i < 4; i++) {
-      setLedOn(Hour1Pin[i]);
-      oTLC.write();
-      delay(Delay4Tests);
-      setLedOff(Hour1Pin[i]);
-      oTLC.write();
-      delay(Delay4Tests);
-    }
-    
-    for (int i = 0; i < 11; i++) {
-      setLedOn(Min5Pin[i]);
-      oTLC.write();
-      delay(Delay4Tests);
-      setLedOff(Min5Pin[i]);
-      oTLC.write();
-      delay(Delay4Tests);
-    }
-    
-    for (int i = 0; i < 4; i++) {
-      setLedOn(Min1Pin[i]);
-      oTLC.write();
-      delay(Delay4Tests);
-      setLedOff(Min1Pin[i]);
-      oTLC.write();
-      delay(Delay4Tests);
-    }
-
-    m_iBright += 25;
-  }
-
   m_iBright = 50;
+
+  setSecLed(0);
+  
+  for (int h = 0; h < 24; h++) {
+    for (int m = 0; m < 60; m++) {
+      setHourLed(h);
+      setMinLed(m);
+    
+      oTLC.write();
+    
+      delay(200);
+    }
+  }
 }
 
 // --------------------------------------------------------------------------------
@@ -329,35 +285,11 @@ void setup()
   }
 }
 
-void testSim24h()
-{
-  setSecLed(0);
-  
-  for (int h = 0; h < 24; h++) {
-    for (int m = 0; m < 60; m++) {
-      setHourLed(h);
-      setMinLed(m);
-    
-      oTLC.write();
-    
-      delay(200);
-    }
-  }
-}
-
 // --------------------------------------------------------------------------------
 // -- Main Loop
 // --------------------------------------------------------------------------------
 void loop()
 {
-/*
-  testLedNumSeq();
-  delay(Delay4Tests);
-*/
-/*
-  testLedSecMinHour();
-  delay(Delay4Tests);
-*/
 /*
   testSim24h();
 */
