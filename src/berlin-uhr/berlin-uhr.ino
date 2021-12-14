@@ -160,6 +160,9 @@ void incMin()
   if (iMin == 59) {
     iMin = 0;
     iHour++;
+    if (iHour == 24) {
+      iHour = 0;
+    }
   }
   else {
     iMin++;
@@ -178,6 +181,9 @@ void decMin()
   if (iMin == 0) {
     iMin = 59;
     iHour--;
+    if (iHour < 0) {
+      iHour = 23;
+    }
   }
   else {
     iMin--;
@@ -265,6 +271,7 @@ void setup()
 {
   // Start the I2C interface
   Wire.begin();
+  Wire.setClock(400000);
 
   pinMode(BtnAPin, INPUT_PULLUP);
   pinMode(BtnBPin, INPUT_PULLUP);
