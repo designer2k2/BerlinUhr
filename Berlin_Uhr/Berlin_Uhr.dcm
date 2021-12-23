@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP KPS-3227
+D Ambient light photo sensor (NPN phototransistor)
+K Kingbright npn phototransistor ambient light photo sensor
+F https://www.kingbright.com/attachments/file/psearch/000/00/00/KPS-3227SP1C(Ver.16).pdf
+$ENDCMP
+#
+#End Doc Library

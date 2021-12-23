@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name Berlin_Uhr)(type Legacy)(uri ${KIPRJMOD}/Berlin_Uhr.lib)(options "")(descr ""))
+)

@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Berlin Uhr"
-Date "2021-12-11"
+Date "2021-12-23"
 Rev ""
 Comp "https://www.designer2k2.at"
 Comment1 ""
@@ -1297,13 +1297,13 @@ $EndComp
 Wire Wire Line
 	4700 3050 4500 3050
 $Comp
-L Sensor_Optical:KPS-3227 Q1
+L Berlin_Uhr:KPS-3227 Q1
 U 1 1 6176EE75
 P 7300 1150
 F 0 "Q1" H 7390 1196 50  0000 L CNN
 F 1 "KPS-3227" H 7390 1105 50  0000 L CNN
 F 2 "LED_SMD:LED_RGB_1210" H 7300 1300 50  0001 C CNN
-F 3 "http://www.kingbright.com/attachments/file/psearch/000/00/watermark00/KPS-3227SP1C(Ver.9).pdf" H 7300 1300 50  0001 C CNN
+F 3 "https://www.kingbright.com/attachments/file/psearch/000/00/00/KPS-3227SP1C(Ver.16).pdf" H 7300 1300 50  0001 C CNN
 	1    7300 1150
 	1    0    0    -1  
 $EndComp
@@ -1312,7 +1312,7 @@ L Device:R R9
 U 1 1 6176FDE6
 P 7300 1650
 F 0 "R9" H 7370 1696 50  0000 L CNN
-F 1 "2k" H 7370 1605 50  0000 L CNN
+F 1 "51k" H 7370 1605 50  0000 L CNN
 F 2 "Resistor_SMD:R_1206_3216Metric" V 7230 1650 50  0001 C CNN
 F 3 "~" H 7300 1650 50  0001 C CNN
 	1    7300 1650
