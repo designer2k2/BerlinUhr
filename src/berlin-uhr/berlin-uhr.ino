@@ -24,9 +24,9 @@ const int Hour5Pin[4] = {25, 26, 4, 5};
 const int Min5Pin[11] = {22, 21, 18, 17, 16, 15, 14, 13, 11, 9, 8};
 const int Min1Pin[4] = {20, 19, 12, 10};
 
-#define LightSensorPin A0
+#define LightSensorPin 6
 #define LightSensorMax 1024
-int m_iBright = 50;
+int m_iBright = 5;
 
 // --------------------
 // RTC
@@ -47,13 +47,22 @@ Adafruit_TLC5947 oTLC = Adafruit_TLC5947(1, Clock, Data, Latch);
 // --------------------------------------------------------------------------------
 // -- Set LEDs
 // --------------------------------------------------------------------------------
+void setBright()
+{
+  m_iBright = analogRead(LightSensorPin);
+
+  if (m_iBright < 10) {
+    m_iBright = 5;
+  }
+}
+
 void setLedOn(int iLedPin)
 {
   if (iLedPin < LedPinOffset) {
     return;
   }
-  
-  int iBright = round(4096 * m_iBright / 100);
+
+  int iBright = 4 * m_iBright;
   
   oTLC.setPWM((iLedPin - LedPinOffset), iBright);
 }
@@ -81,10 +90,6 @@ void setSecLed(int iSec)
 
 void setMinLed(int iMin)
 {
-  if (iMin == m_iMin) {
-    return;
-  }
-
   m_iMin = iMin;
 
   // --------------------------------------------
@@ -116,10 +121,6 @@ void setMinLed(int iMin)
 
 void setHourLed(int iHour)
 {
-  if (iHour == m_iHour) {
-    return;
-  }
-
   m_iHour = iHour;
 
   // --------------------------------------------
@@ -207,8 +208,8 @@ void testLedNumSeq()
 
   delay(Delay4Tests);
 
-  m_iBright = 25;
-  while (m_iBright <= 100) {
+  m_iBright = 250;
+  while (m_iBright <= 1000) {
     for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
       setLedOn(i);
       oTLC.write();
@@ -217,15 +218,15 @@ void testLedNumSeq()
       oTLC.write();
     }
 
-    m_iBright += 25;
+    m_iBright += 250;
   }
 
-  m_iBright = 50;
+  m_iBright = 500;
 }
 
 void testSim24h()
 {
-  m_iBright = 50;
+  m_iBright = 500;
 
   setSecLed(0);
   
@@ -308,13 +309,13 @@ void loop()
     decMin();
   }
 
-  //m_iBright = round(analogRead(LightSensorPin) * 100 / LightSensorMax);
+  setBright();
 
   setSecLed(m_oClock.getSecond());
   setMinLed(m_oClock.getMinute());
   setHourLed(m_oClock.getHour(m_bH12, m_bPM));
 
   oTLC.write();
-
+ 
   delay(200);
 }
