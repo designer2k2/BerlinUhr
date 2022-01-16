@@ -12,7 +12,7 @@
 #define Delay4Tests 500
 
 // 1 = linear, 2 = log
-#define BrightCurve 2
+#define BrightCurve 1
 
 // --------------------------------------------------------------------------------
 // -- Global Variables
@@ -58,8 +58,8 @@ void setBright()
     default:
       m_iBright = 4 * analogRead(LightSensorPin);
     
-      if (m_iBright < 5) {
-        m_iBright = 5;
+      if (m_iBright < 20) {
+        m_iBright = 20;
       }
       break;
       
