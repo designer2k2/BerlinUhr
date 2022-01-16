@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name Berlin_Uhr)(type Legacy)(uri ${KIPRJMOD}/Berlin_Uhr.lib)(options "")(descr ""))
+  (lib (name Berlin_Uhr)(type Legacy)(uri ${KIPRJMOD}/Berlin_Uhr.kicad_sym)(options "")(descr ""))
+  (lib (name Berlin_Uhr-rescue)(type Legacy)(uri ${KIPRJMOD}/Berlin_Uhr-rescue.lib)(options "")(descr ""))
 )
