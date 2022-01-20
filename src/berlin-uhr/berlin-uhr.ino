@@ -11,8 +11,10 @@
 // --------------------------------------------------------------------------------
 #define Delay4Tests 500
 
-// 1 = linear, 2 = log
-#define BrightCurve 1
+// 1 = linear, 2 = log, 3 = x^2, 4 = sq(x)
+#define BrightCurve 3
+// 0 = off, 1 = middle to last
+#define BrightMiddle 1
 
 // --------------------------------------------------------------------------------
 // -- Global Variables
@@ -52,33 +54,50 @@ Adafruit_TLC5947 oTLC = Adafruit_TLC5947(1, Clock, Data, Latch);
 // --------------------------------------------------------------------------------
 void setBright()
 {
+  uint32_t uiBright = analogRead(LightSensorPin);
+
+  // brightness curve
   switch (BrightCurve) {
     // linear
     case 1:
     default:
-      m_iBright = 4 * analogRead(LightSensorPin);
+      uiBright = 4 * uiBright;
     
-      if (m_iBright < 20) {
-        m_iBright = 20;
+      if (uiBright < 20) {
+        uiBright = 20;
       }
       break;
       
     // log
     case 2:
       // Read the light sensor value, log convert:
-      uint32_t uiBright = analogRead(LightSensorPin);
       uiBright = sq(uiBright);
       uiBright = uiBright / 256;
-      if (uiBright > 10) {
-        m_iBright = (int)uiBright;
-      } else {
-        m_iBright = 10;
+      if (uiBright < 20) {
+        m_iBright = 20;
       }
+      break;
+
+    // x^2
+    case 3:
+      uiBright = uiBright * uiBright / 400 + 20;
+      break;
+
+    // sq
+    case 4:
+      uiBright = sq(uiBright) * 5 + 10;
+  }
+
+  switch (BrightMiddle) {
+    case 1:
+      uiBright = (uiBright + m_iBright) / 2;
+      break;
+      
+    default:
       break;
   }
 
-  /*
-  */
+  m_iBright = (int)uiBright;
 }
 
 void setLedOn(int iLedPin)
