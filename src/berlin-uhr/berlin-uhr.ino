@@ -11,11 +11,6 @@
 // --------------------------------------------------------------------------------
 #define Delay4Tests 500
 
-// 1 = linear, 2 = log, 3 = x^2, 4 = sq(x)
-#define BrightCurve 3
-// 0 = off, 1 = middle to last
-#define BrightMiddle 1
-
 // --------------------------------------------------------------------------------
 // -- Global Variables
 // --------------------------------------------------------------------------------
@@ -29,9 +24,20 @@ const int Hour5Pin[4] = {25, 26, 4, 5};
 const int Min5Pin[11] = {22, 21, 18, 17, 16, 15, 14, 13, 11, 9, 8};
 const int Min1Pin[4] = {20, 19, 12, 10};
 
+// --------------------
+// Light Sensor
+// Brightness
+// --------------------
 #define LightSensorPin 6
 #define LightSensorMax 1024
-int m_iBright = 5;
+#define BrightMin 20
+// 1 = linear, 2 = log, 3 = x^2, 4 = sq(x)
+#define BrightCurve 1
+// 0 = off, 1 = middle to last, 2 = FIFO
+#define BrightSmooth 0
+#define BrightFifoNum 10int m_iBright = 5;
+int m_iBrightFifo[BrightFifoNum];
+int m_iBrightFifoIdx = 0;
 
 // --------------------
 // RTC
@@ -54,6 +60,7 @@ Adafruit_TLC5947 oTLC = Adafruit_TLC5947(1, Clock, Data, Latch);
 // --------------------------------------------------------------------------------
 void setBright()
 {
+  int iBrightTotal = 0;
   uint32_t uiBright = analogRead(LightSensorPin);
 
   // brightness curve
@@ -62,10 +69,6 @@ void setBright()
     case 1:
     default:
       uiBright = 4 * uiBright;
-    
-      if (uiBright < 20) {
-        uiBright = 20;
-      }
       break;
       
     // log
@@ -73,26 +76,42 @@ void setBright()
       // Read the light sensor value, log convert:
       uiBright = sq(uiBright);
       uiBright = uiBright / 256;
-      if (uiBright < 20) {
-        m_iBright = 20;
-      }
       break;
 
     // x^2
     case 3:
-      uiBright = uiBright * uiBright / 400 + 20;
+      uiBright = uiBright * uiBright / 400 + BrightMin;
       break;
 
     // sq
     case 4:
-      uiBright = sq(uiBright) * 5 + 10;
+      uiBright = sq(uiBright) * 5 + BrightMin;
   }
 
-  switch (BrightMiddle) {
+  // set to minimum
+  if (uiBright < BrightMin) {
+    m_iBright = BrightMin;
+  }
+
+  // smoothing
+  switch (BrightSmooth) {
     case 1:
       uiBright = (uiBright + m_iBright) / 2;
       break;
+
+    case 2:
+      m_iBrightFifoIdx++;
+      if (m_iBrightFifoIdx == BrightFifoNum) {
+        m_iBrightFifoIdx = 0;
+      }
+      m_iBrightFifo[m_iBrightFifoIdx] = uiBright;
+      for (int i = 0; i < BrightFifoNum; i++) {
+        iBrightTotal += m_iBrightFifo[i];
+      }
+      uiBright = iBrightTotal / BrightFifoNum;
       
+      break;
+
     default:
       break;
   }
@@ -332,6 +351,10 @@ void setup()
   
   for (int i = LedPinOffset; i <= (23 + LedPinOffset); i++) {
     setLedOff(i);
+  }
+
+  for (int i = 0; i < BrightFifoNum; i++) {
+    m_iBrightFifo[i] = 20;
   }
 }
 
