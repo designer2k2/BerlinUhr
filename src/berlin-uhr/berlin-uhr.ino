@@ -35,7 +35,8 @@ const int Min1Pin[4] = {20, 19, 12, 10};
 #define BrightCurve 1
 // 0 = off, 1 = middle to last, 2 = FIFO
 #define BrightSmooth 0
-#define BrightFifoNum 10int m_iBright = 5;
+#define BrightFifoNum 10
+int m_iBright = 5;
 int m_iBrightFifo[BrightFifoNum];
 int m_iBrightFifoIdx = 0;
 
