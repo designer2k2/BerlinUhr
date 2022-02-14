@@ -16,10 +16,12 @@ The [ATtiny167](https://www.microchip.com/ATtiny167) receives the actual time fr
 
 ## Modifiying it
 
-- The PCB is made with KiCad: http://www.kicad-pcb.org/
-- The graphics on it are made with Inkscape: https://inkscape.org/
+- The PCB is made with KiCad (6.0.2): http://www.kicad-pcb.org/
+- The PCB-Art graphics are made with Inkscape: https://inkscape.org/
 - Parts of the graphics are converted to Footprints with svg2mod: https://github.com/mtl/svg2mod
 - The BOM is made with InteractiveHtmlBom: https://github.com/openscopeproject/InteractiveHtmlBom
+
+KiCad Version of at least 6.0.2 is needed due to a bug in the KPS-3227 Footprint in older Versions: https://gitlab.com/kicad/libraries/kicad-symbols/-/issues/3164
 
 ## How it looks
 
