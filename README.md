@@ -33,7 +33,7 @@ The bare PCB:
 
 ![grafik](https://user-images.githubusercontent.com/1591573/145869008-ae3285b8-d30f-4078-b08b-50e39cbf8119.png)
 
-ISP Programming the ATtiny with the help of a Arduino Uno:
+ISP Programming the Bootloader to the ATtiny with the help of a Arduino Uno:
 
 ![grafik](https://user-images.githubusercontent.com/1591573/145869260-832a9c8c-31fa-4e75-bda4-909f35da3e4d.png)
 
