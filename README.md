@@ -12,7 +12,20 @@ The [ATtiny167](https://www.microchip.com/ATtiny167) receives the actual time fr
 1. PCB, source it with the gerbers: https://github.com/designer2k2/BerlinUhr/tree/main/Berlin_Uhr/gerber
 2. BOM, interactive BOM here: https://github.com/designer2k2/BerlinUhr/tree/main/Berlin_Uhr/bom
 3. Bootloader, burn the [Micronucleus](https://github.com/micronucleus/micronucleus) Bootloader to the ATtiny167 with ISP: https://github.com/ArminJo/DigistumpArduino 
-4. Software, upload the Code from the scr folder: https://github.com/designer2k2/BerlinUhr/tree/main/src/berlin-uhr 
+4. Insert CR1216 battery for the RTC to keep time also while the USB power is gone.
+5. Software, upload the Code from the scr folder: https://github.com/designer2k2/BerlinUhr/tree/main/src/berlin-uhr 
+
+
+## Setting the time
+
+1. The time gets set the first time the code is uploaded to the time from the pc.
+2. To change it afterwards, hold the A and B buttons on the edge / backside.
+
+## Reading the time
+
+This is special on the Berlin Clock. A practical explanation is given in the wikipedia article: https://en.wikipedia.org/wiki/Mengenlehreuhr#Time_encoding
+
+The Berlin Clock is easy to read after a couple of days :-)
 
 ## Modifiying it
 
@@ -28,6 +41,9 @@ KiCad Version of at least 6.0.2 is needed due to a bug in the KPS-3227 Footprint
 ![grafik](https://user-images.githubusercontent.com/1591573/145868070-2f7428de-198e-460a-b480-efdc99f8b2e2.png)
 
 Its 17:45 :smiley:
+
+It can hang on a wall or sit on a table with the help of a USB-C phone docking station.
+
 
 The bare PCB:
 
