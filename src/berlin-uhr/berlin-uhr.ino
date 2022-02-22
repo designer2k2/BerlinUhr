@@ -1,8 +1,29 @@
+// Copyright (C) 2022 Oliver Rehfeld, Stephan Martin
+// This file is part of Berlin Uhr <https://github.com/designer2k2/BerlinUhr>.
+//
+// Berlin Uhr is free software and hardware: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Berlin Uhr is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Berlin Uhr.  If not, see <http://www.gnu.org/licenses/>.
+
+// Howto:
+// At the time of writing this code was uploaded using Arduino IDE 1.8.19
+// And the ATTinyCore 1.5.2 https://github.com/SpenceKonde/ATTinyCore set to:
+// ATtiny167 (Micronucleus / DigiSpark Pro)
+
 // --------------------------------------------------------------------------------
 // -- Includes
 // --------------------------------------------------------------------------------
-#include <Adafruit_TLC5947.h>
-#include <DS3231.h>
+#include <Adafruit_TLC5947.h> // https://github.com/adafruit/Adafruit_TLC5947/
+#include <DS3231.h> // https://github.com/NorthernWidget/DS3231
 #include <Wire.h>
 #include <EEPROM.h>
 
