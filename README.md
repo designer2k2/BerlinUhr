@@ -10,16 +10,17 @@ The [ATtiny167](https://www.microchip.com/ATtiny167) receives the actual time fr
 ## Building it
 
 1. PCB, source it with the gerbers: https://github.com/designer2k2/BerlinUhr/tree/main/Berlin_Uhr/gerber
-2. BOM, interactive BOM here: https://github.com/designer2k2/BerlinUhr/tree/main/Berlin_Uhr/bom
-3. Bootloader, burn the [Micronucleus](https://github.com/micronucleus/micronucleus) Bootloader to the ATtiny167 with ISP: https://github.com/ArminJo/DigistumpArduino 
-4. Insert CR1216 battery for the RTC to keep time also while the USB power is gone.
-5. Software, upload the Code from the scr folder: https://github.com/designer2k2/BerlinUhr/tree/main/src/berlin-uhr 
+2. Schematic: https://github.com/designer2k2/BerlinUhr/blob/main/Berlin_Uhr/Schematic.pdf
+3. BOM, interactive BOM here: https://github.com/designer2k2/BerlinUhr/tree/main/Berlin_Uhr/bom
+4. Bootloader, burn the [Micronucleus](https://github.com/micronucleus/micronucleus) Bootloader to the ATtiny167 with ISP: https://github.com/ArminJo/DigistumpArduino 
+5. Insert CR1216 battery for the RTC to keep time also while the USB power is gone.
+6. Software, upload the Code from the scr folder: https://github.com/designer2k2/BerlinUhr/tree/main/src/berlin-uhr 
 
 
 ## Setting the time
 
 1. The time gets set the first time the code is uploaded to the time from the pc.
-2. To change it afterwards, hold the A and B buttons on the edge / backside.
+2. To change it afterwards, push the A and B buttons on the edge / backside.
 
 ## Reading the time
 
