@@ -31,6 +31,7 @@ const int Min1Pin[4] = {20, 19, 12, 10};
 #define LightSensorPin 6
 #define LightSensorMax 1024
 #define BrightMin 20
+#define BrightMax 300 // max 4096
 // 1 = linear, 2 = log, 3 = x^2, 4 = sq(x)
 #define BrightCurve 1
 // 0 = off, 1 = middle to last, 2 = FIFO
@@ -89,11 +90,6 @@ void setBright()
       uiBright = sq(uiBright) * 5 + BrightMin;
   }
 
-  // set to minimum
-  if (uiBright < BrightMin) {
-    m_iBright = BrightMin;
-  }
-
   // smoothing
   switch (BrightSmooth) {
     case 1:
@@ -118,6 +114,15 @@ void setBright()
   }
 
   m_iBright = (int)uiBright;
+
+  // set to minimum
+  if (m_iBright < BrightMin) {
+    m_iBright = BrightMin;
+  }
+  // set to maximum
+  if (m_iBright > BrightMax) {
+    m_iBright = BrightMax;
+  }
 }
 
 void setLedOn(int iLedPin)
