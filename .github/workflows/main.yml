@@ -29,8 +29,8 @@ jobs:
       # dynamically by the build matrix.
       - name: Install platform
         run: |
-          arduino-cli --additional-urls http://drazzy.com/package_drazzy.com_index.json
           arduino-cli core update-index --additional-urls http://drazzy.com/package_drazzy.com_index.json
+          arduino-cli config dump
           arduino-cli core install ${{ matrix.arduino-platform }}
       # Finally, we compile the sketch, using the FQBN that was set
       # in the build matrix.
