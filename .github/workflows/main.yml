@@ -22,3 +22,7 @@ jobs:
           sketch-paths: |
             - src/berlin-uhr
           fqbn: "ATTinyCore:avr:attinyx7:chip=167"
+          libraries: |
+            - name: "Adafruit TLC5947"
+            - name: "DS3231"
+            
