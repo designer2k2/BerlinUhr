@@ -16,8 +16,9 @@ jobs:
         uses: arduino/compile-sketches@main
         with:
           platforms: |
-            - source-url: "https://github.com/SpenceKonde/ATTinyCore/archive/1.4.1.zip"
+            - source-url: "https://github.com/SpenceKonde/ATTinyCore/archive/1.5.2.zip"
               name: "ATTinyCore:avr"
+              source-path: "./avr/"
             - name: "arduino:avr"
           sketch-paths: |
             - src/berlin-uhr
