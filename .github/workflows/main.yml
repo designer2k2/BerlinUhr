@@ -1,0 +1,29 @@
+name: Compile Sketch
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  compile-sketch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Compile 
+        uses: arduino/compile-sketches@main
+        with:
+          platforms: |
+            - source-url: "https://github.com/SpenceKonde/ATTinyCore/archive/1.5.2.zip"
+              name: "ATTinyCore:avr"
+              source-path: "./avr/"
+            - name: "arduino:avr"
+          sketch-paths: |
+            - src/berlin-uhr
+          fqbn: "ATTinyCore:avr:attinyx7:chip=167"
+          libraries: |
+            - name: "Adafruit TLC5947"
+            - name: "DS3231"
+            
