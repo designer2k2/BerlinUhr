@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Compile examples
+      - name: Compile 
         uses: arduino/compile-sketches@main
         with:
           platforms: |
