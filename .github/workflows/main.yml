@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - arduino-platform: "arduino:avr"
+          - arduino-platform: "ATTinyCore:avr"
             fqbn: "ATTinyCore:avr:attinyx7:chip=167"
 
     # This is the platform GitHub will use to run our workflow, we
@@ -29,6 +29,8 @@ jobs:
       # dynamically by the build matrix.
       - name: Install platform
         run: |
+          arduino-cli core config init
+          arduino-cli config add board_manager.additional_urls http://drazzy.com/package_drazzy.com_index.json
           arduino-cli core update-index --additional-urls http://drazzy.com/package_drazzy.com_index.json
           arduino-cli core install ${{ matrix.arduino-platform }}
       # Finally, we compile the sketch, using the FQBN that was set
