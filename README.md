@@ -1,5 +1,5 @@
 # BerlinUhr
-Berlin Uhr or Mengenlehreuhr, a fancy retro style clock thats a bit tricky to read: https://en.wikipedia.org/wiki/Mengenlehreuhr
+Berlin Uhr or Mengenlehreuhr, a fancy retro style clock that's a bit tricky to read: https://en.wikipedia.org/wiki/Mengenlehreuhr
 
 ## What is this
 
@@ -28,7 +28,7 @@ This is special on the Berlin Clock. A practical explanation is given in the wik
 
 The Berlin Clock is easy to read after a couple of days :-)
 
-## Modifiying it
+## Modifying it
 
 - The PCB is made with KiCad (6.0.2): http://www.kicad-pcb.org/
 - The PCB-Art graphics are made with Inkscape: https://inkscape.org/
