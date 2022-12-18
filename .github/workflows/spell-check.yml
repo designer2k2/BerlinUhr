@@ -18,4 +18,4 @@ jobs:
       - name: Spell check
         uses: codespell-project/actions-codespell@master
         with:
-          skip: Schematic.pdf,Berlin_Uhr.kicad_pcb,ibom.html
+          skip: Schematic.pdf,Berlin_Uhr.kicad_pcb,ibom.html,./.git
