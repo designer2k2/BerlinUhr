@@ -17,3 +17,5 @@ jobs:
       # See: https://github.com/codespell-project/actions-codespell/blob/master/README.md
       - name: Spell check
         uses: codespell-project/actions-codespell@master
+        with:
+          skip: Schematic.pdf,Berlin_Uhr.kicad_pcb,ibom.html
